@@ -1,0 +1,34 @@
+<div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog">
+    <div class="modal-content shadow">
+      <div class="modal-header">
+        <h5 class="modal-title">Értékeld a filmet</h5>
+        <button type="button" class="btn-close" (click)="close.emit()"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="submit()" class="row g-3">
+          <div class="col-12">
+            <label class="form-label">Neved</label>
+            <input type="text" class="form-control" [(ngModel)]="reviewer" name="reviewer" />
+          </div>
+
+          <div class="col-12">
+            <label class="form-label">Értékelés (1–5 csillag)</label>
+            <select class="form-select" [(ngModel)]="rating" name="rating">
+              <option *ngFor="let r of [1,2,3,4,5]" [ngValue]="r">{{ r }} csillag</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label">Megjegyzés</label>
+            <textarea class="form-control" rows="3" [(ngModel)]="comment" name="comment"></textarea>
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-success w-100" type="submit">Küldés</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

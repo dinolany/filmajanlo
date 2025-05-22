@@ -1,0 +1,31 @@
+<div class="card mb-4 shadow-sm">
+  <div class="card-body">
+    <h5 class="card-title text-primary mb-3">Szűrés</h5>
+
+    <div class="mb-3">
+      <label class="form-label">Szűrés típusa:</label>
+      <select class="form-select" [(ngModel)]="filterType">
+        <option [ngValue]="null">-- Válassz --</option>
+        <option value="title">Név szerint</option>
+        <option value="rating">Értékelés szerint</option>
+      </select>
+    </div>
+
+    <div *ngIf="filterType === 'title'" class="mb-3">
+      <label class="form-label">Keresett szöveg:</label>
+      <input type="text" class="form-control" [(ngModel)]="titleSearch" />
+    </div>
+
+    <div *ngIf="filterType === 'rating'" class="mb-3">
+      <label class="form-label">Csillagszám:</label>
+      <select class="form-select" [(ngModel)]="ratingSearch">
+        <option *ngFor="let r of [5,4,3,2,1]" [ngValue]="r">{{ r }} csillag</option>
+      </select>
+    </div>
+
+    <div class="d-flex gap-2">
+      <button class="btn btn-success" (click)="applyFilter()">Szűrés</button>
+      <button class="btn btn-outline-secondary" (click)="clearFilter()">Törlés</button>
+    </div>
+  </div>
+</div>

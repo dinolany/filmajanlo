@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4 text-primary">Filmajánló – Bejelentkezés</h4>
+
+          <form (ngSubmit)="submit()">
+            <div class="mb-3">
+              <label for="username" class="form-label">Felhasználónév</label>
+              <input type="text"
+                     id="username"
+                     class="form-control"
+                     [(ngModel)]="username"
+                     name="username"
+                     placeholder="Add meg a neved..." />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Belépés</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

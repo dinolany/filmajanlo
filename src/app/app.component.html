@@ -1,0 +1,60 @@
+<div class="app-background position-relative">
+  <!-- Csillogó csillagos háttér -->
+  <div class="stars"></div>
+  <!--fejléc-->
+<div class="text-center mt-4 mb-4">
+  <img src="assets/mesi-glitter.gif" alt="Mesi filmes listája" style="max-width: 100%; height: auto;" />
+</div>
+  <!-- Tartalom z-index: 1 -->
+  <div class="position-relative" style="z-index: 1;">
+
+    <!-- Ha nincs bejelentkezve -->
+    <ng-container *ngIf="!username">
+      <div class="container mt-5">
+        <app-login (login)="handleLogin($event)"></app-login>
+      </div>
+    </ng-container>
+
+    <!-- Ha be van jelentkezve -->
+    <ng-container *ngIf="username">
+      <div class="container mt-3 mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="text-muted">Bejelentkezve: <strong>{{ username }}</strong></span>
+          <button class="btn btn-sm btn-outline-secondary" (click)="logout()">Kijelentkezés</button>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Új film hozzáadása gomb -->
+        <div class="mb-3 d-flex gap-3">
+          <button class="btn btn-primary" (click)="showModal = true">+ Új film hozzáadása</button>
+        </div>
+
+        <!-- Szűrő komponens -->
+        <app-film-filter [films]="allFilms" (filtered)="applyFilteredList($event)"></app-film-filter>
+
+        <!-- Film lista (szűrt) -->
+        <h4 class="mb-4 text-primary">Filmajánló lista</h4>
+        <app-film-list [films]="films"></app-film-list>
+      </div>
+
+      <!-- Új film hozzáadás modál -->
+      <div class="modal fade show d-block" tabindex="-1" *ngIf="showModal" style="background-color: rgba(0,0,0,0.5);">
+        <div class="modal-dialog">
+          <div class="modal-content shadow">
+            <div class="modal-header">
+              <h5 class="modal-title">Új film hozzáadása</h5>
+              <button type="button" class="btn-close" (click)="showModal = false"></button>
+            </div>
+            <div class="modal-body">
+              <app-new-film-form (add)="handleNewFilm($event)"></app-new-film-form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<app-cursor-trail></app-cursor-trail>
+<app-click-firework></app-click-firework>
+<app-snowfall></app-snowfall>

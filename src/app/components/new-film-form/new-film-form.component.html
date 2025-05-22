@@ -1,0 +1,28 @@
+<div class="card mb-4 shadow-sm">
+  <div class="card-body">
+    <h5 class="card-title text-primary mb-3">Új film hozzáadása</h5>
+
+    <form (ngSubmit)="submit()" class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Film címe</label>
+        <input type="text" class="form-control" [(ngModel)]="title" name="title" />
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Értékelés</label>
+        <select class="form-select" [(ngModel)]="rating" name="rating">
+          <option *ngFor="let r of [1,2,3,4,5]" [ngValue]="r">{{ r }} csillag</option>
+        </select>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label">Megjegyzés</label>
+        <textarea class="form-control" [(ngModel)]="comment" name="comment" rows="2"></textarea>
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn btn-success">Hozzáadás</button>
+      </div>
+    </form>
+  </div>
+</div>

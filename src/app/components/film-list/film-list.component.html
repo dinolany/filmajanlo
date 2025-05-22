@@ -1,0 +1,46 @@
+<div class="row g-4">
+  <div class="col-md-6 col-lg-4" *ngFor="let film of films">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{ film.title }}</h5>
+
+        <p class="card-text text-warning mb-1" align="center">
+          <ng-container *ngFor="let _ of [].constructor(film.rating)">⭐</ng-container>
+        </p>
+
+        <p class="card-text fst-italic text-muted" *ngIf="film.comment">
+          "{{ film.comment }}"
+        </p>
+
+        <!-- Gombok -->
+        <div class="d-flex gap-2">
+          <button class="btn btn-sm btn-outline-primary" (click)="openRating(film.id)">Értékelés</button>
+          <button class="btn btn-sm btn-outline-secondary" (click)="toggleReviews(film.id)">
+            Mások értékelései
+          </button>
+        </div>
+      </div>
+
+      <!-- Értékelések listája (csak ha meg van nyitva) -->
+      <ul class="list-group list-group-flush" *ngIf="isShowingReviews(film.id)">
+        <li class="list-group-item" *ngFor="let review of getReviewsFor(film.id)">
+          <div class="d-flex justify-content-between">
+            <div class="text-warning">
+              <ng-container *ngFor="let _ of [].constructor(review.rating)">⭐</ng-container>
+              <span class="ms-2 text-dark fw-semibold">– {{ review.reviewer }}</span>
+            </div>
+            <small class="text-muted">{{ review.date | date:'short' }}</small>
+          </div>
+          <div class="text-muted fst-italic mt-1">{{ review.comment }}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Értékelő modál -->
+<app-rating
+  *ngIf="selectedFilmId"
+  [filmId]="selectedFilmId"
+  (close)="closeRating()">
+</app-rating>

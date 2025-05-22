@@ -1,0 +1,142 @@
+.app-background {
+  position: relative;
+  min-height: 100vh;
+  background-color: #13003d; // sötétkék
+  overflow: hidden;
+}
+
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-color: transparent;
+  background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+  background-repeat: repeat;
+  animation: moveStars 60s linear infinite;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes moveStars {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
+}
+.glitter-header {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ff69b4; /* pink alapszín */
+  background: linear-gradient(90deg, #ff69b4, #da70d6, #ffb6c1, #ff69b4);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glitterAnim 5s linear infinite;
+  text-shadow: 0 0 10px #ffb6c1, 0 0 20px #ff69b4;
+}
+
+@keyframes glitterAnim {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+/* Alap betűtípus és alapszínek */
+body {
+  font-family: 'Times New Roman', serif;
+  background-color: #0e0b1e;
+  color: #f8f8f8;
+}
+
+/* Dobozok finom retró stílusa */
+.card,
+.list-group-item,
+.modal-content,
+.form-control,
+.form-select {
+  background-color: #13003d;
+  color: white;
+  border: 1px solid #a259ff;
+  opacity: 0.9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(162, 89, 255, 0.3);
+}
+/* Doboz film leírás */
+.card-text fst-italic text-muted {
+  color: white!important;}
+
+/* Gombok lilás retró stílusban */
+.btn-primary, .btn-outline-primary{
+  background-color: #a259ff;
+  border-color: #a259ff;
+}
+
+.btn-primary:hover {
+  background-color: #c694ff;
+  border-color: #c694ff;
+  color: black;
+}
+
+.btn-outline-secondary, .btn-outline-secondary {
+  border-color: #a259ff;
+  color: white;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #a259ff;
+  color: white;
+}
+
+/* Fejléc címek */
+h1, h2, h3, h4, h5 {
+  color:  #e212bb!important;
+  padding-bottom: 6px;
+  border-bottom: 2px dashed #e212bb;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0px 1px 2px #572e87;
+}
+
+h1::before,
+h2::before,
+h3::before,
+h4::before,
+h6::before,
+h1::after,
+h2::after,
+h3::after,
+h4::after,
+h6::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 8px;
+  background-image: url('assets/star.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+}
+
+/* Input mezők */
+input.form-control,
+textarea.form-control {
+  background-color: #a259ff;
+  color: #ffffff;
+  border: 1px solid white;
+}
+
+/* Placeholder is jól látszódjon */
+input::placeholder,
+textarea::placeholder {
+  color: #cccccc;
+}
