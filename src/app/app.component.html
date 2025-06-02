@@ -18,20 +18,26 @@
     <!-- Ha be van jelentkezve -->
     <ng-container *ngIf="username">
       <div class="container mt-3 mb-4">
-        <div class="d-flex justify-content-between align-items-center">
-          <span class="text-muted">Bejelentkezve: <strong>{{ username }}</strong></span>
-          <button class="btn btn-sm btn-outline-secondary" (click)="logout()">Kijelentkezés</button>
-        </div>
+   <div class="d-flex justify-content-between align-items-center text-white">
+  <span>Bejelentkezve: <strong>{{ username }}</strong></span>
+  <button class="btn btn-sm btn-outline-light" (click)="logout()">Kijelentkezés</button>
+</div>
       </div>
 
       <div class="container">
-        <!-- Új film hozzáadása gomb -->
-        <div class="mb-3 d-flex gap-3">
-          <button class="btn btn-primary" (click)="showModal = true">+ Új film hozzáadása</button>
-        </div>
+<!-- Gombok: Új film + Szűrés -->
+<div class="mb-3 d-flex gap-3">
+  <button class="btn btn-primary" (click)="showModal = true">+ Új film hozzáadása</button>
+  <button class="btn btn-outline-light" (click)="toggleFilter()">Szűrés</button>
+</div>
 
-        <!-- Szűrő komponens -->
-        <app-film-filter [films]="allFilms" (filtered)="applyFilteredList($event)"></app-film-filter>
+<!-- Szűrő komponens megjelenítése -->
+<app-film-filter
+  *ngIf="showFilter"
+  [films]="allFilms"
+  (filtered)="applyFilteredList($event)">
+</app-film-filter>
+
 
         <!-- Film lista (szűrt) -->
         <h4 class="mb-4 text-primary">Filmajánló lista</h4>

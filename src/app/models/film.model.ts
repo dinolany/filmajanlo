@@ -4,4 +4,5 @@ export interface Film {
   rating: number;
   comment: string;
   dateAdded: string;
+  posterUrl: string;
 }

@@ -6,7 +6,8 @@ import { FilmListComponent } from './components/film-list/film-list.component';
 import { FilmFilterComponent } from './components/film-filter/film-filter.component';
 import { FilmService } from './services/film.service';
 import { Film } from './models/film.model';
-//trashcontent
+
+// trashcontent
 import { CursorTrailComponent } from './components/cursor-trail/cursor-trail.component';
 import { ClickFireworkComponent } from './components/click-firework/click-firework.component';
 import { SnowfallComponent } from './components/snowfall/snowfall.component';
@@ -23,12 +24,16 @@ import { SnowfallComponent } from './components/snowfall/snowfall.component';
     CursorTrailComponent,
     ClickFireworkComponent,
     SnowfallComponent
-],
+  ],
   templateUrl: './app.component.html'
 })
 export class AppComponent {
+  title = 'Filmajánlók'; 
+
   username: string | null = localStorage.getItem('username');
   showModal = false;
+  showFilter = false;
+
   films: Film[] = [];
   allFilms: Film[] = [];
 
@@ -46,7 +51,10 @@ export class AppComponent {
   }
 
   handleNewFilm(data: { title: string; rating: number; comment: string }) {
-    this.filmService.add(data);
+    this.filmService.add({
+      ...data,
+      posterUrl: 'assets/default_poster.png' // ✅ hozzáadva
+    });
     this.loadFilms();
     this.showModal = false;
   }
@@ -58,5 +66,9 @@ export class AppComponent {
 
   applyFilteredList(filtered: Film[]) {
     this.films = filtered;
+  }
+
+  toggleFilter() {
+    this.showFilter = !this.showFilter;
   }
 }

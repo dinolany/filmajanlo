@@ -1,27 +1,30 @@
 <div class="row g-4">
   <div class="col-md-6 col-lg-4" *ngFor="let film of films">
     <div class="card shadow-sm h-100">
-      <div class="card-body">
+<div class="glitter-frame-wrapper">
+  <img [src]="film.posterUrl" class="glitter-poster" />
+</div>
+
+
+      <div class="card-body d-flex flex-column">
         <h5 class="card-title">{{ film.title }}</h5>
 
-        <p class="card-text text-warning mb-1" align="center">
+        <p class="card-text text-warning mb-1 text-center">
           <ng-container *ngFor="let _ of [].constructor(film.rating)">⭐</ng-container>
         </p>
 
-        <p class="card-text fst-italic text-muted" *ngIf="film.comment">
-          "{{ film.comment }}"
+        <p class="film-comment mt-2" *ngIf="film.comment">
+          <span class="quote-mark">❝</span>{{ film.comment }}<span class="quote-mark">❞</span>
         </p>
 
-        <!-- Gombok -->
-        <div class="d-flex gap-2">
-          <button class="btn btn-sm btn-outline-primary" (click)="openRating(film.id)">Értékelés</button>
-          <button class="btn btn-sm btn-outline-secondary" (click)="toggleReviews(film.id)">
+        <div class="mt-auto d-flex gap-2">
+          <button class="btn btn-sm btn-outline-primary w-50" (click)="openRating(film.id)">Értékelés</button>
+          <button class="btn btn-sm btn-outline-secondary w-50" (click)="toggleReviews(film.id)">
             Mások értékelései
           </button>
         </div>
       </div>
 
-      <!-- Értékelések listája (csak ha meg van nyitva) -->
       <ul class="list-group list-group-flush" *ngIf="isShowingReviews(film.id)">
         <li class="list-group-item" *ngFor="let review of getReviewsFor(film.id)">
           <div class="d-flex justify-content-between">
